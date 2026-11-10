@@ -1,533 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>internl | unblocked</title>
-    
-    <!-- ultraviolet required scripts (make sure these paths match where you put your uv files) -->
-    <script src="/uv/uv.bundle.js"></script>
-    <script src="/uv/uv.config.js"></script>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Ultraviolet | Sophisticated Web Proxy</title>
+    <meta
+      name="description"
+      content="Ultraviolet is a highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers. Unblock sites today!"
+    />
+    <meta
+      name="keywords"
+      content="proxy, web proxy, ultraviolet, service workers, unblock websites, unblock chromebook, free web proxy, proxy list, proxy sites, un block chromebook, online proxy, proxy server, proxysite, proxy youtube, bypass securly, bypass iboss, bypass lightspeed filter, holy unblocker, chromebooks, titanium network, unblock youtube, youtube proxy, unblocked youtube, youtube unblocked"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#434c5e"
+    />
+    <meta name="googlebot" content="index, follow, snippet" />
+    <link rel="shortcut icon" content="favicon.ico" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="baremux/index.js" defer></script>
+    <script src="epoxy/index.js" defer></script>
+    <script src="uv/uv.bundle.js" defer></script>
+    <script src="uv/uv.config.js" defer></script>
+    <script src="register-sw.js" defer></script>
+    <script src="search.js" defer></script>
+    <script src="index.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Ultraviolet (Web Proxy)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers and more!"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I unblock sites using Ultraviolet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply head to an official site featuring Ultraviolet such as Holy Unblocker or Incognito! You can also self-host Ultraviolet on your own web server for maximum privacy."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if Ultraviolet is blocked or not working?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Join the Titanium Network Discord at discord.gg/unblock!"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
 
-    <style>
-        :root {
-            --bg-color: #0a0a0c;
-            --card-bg: #15151a;
-            --accent: #9d4edd;
-            --accent-hover: #b16ded;
-            --text-main: #ffffff;
-            --text-muted: #888899;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'inter', -apple-system, blinkmacsystemfont, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-
-        /* navbar */
-        header {
-            background-color: var(--card-bg);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #222;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: lowercase;
-            cursor: pointer;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-btn {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: color 0.2s ease;
-            cursor: pointer;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            color: var(--accent);
-        }
-
-        /* container & sections */
-        .container {
-            padding: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-content {
-            display: none;
-            animation: fadein 0.3s ease-in-out;
-        }
-
-        .section-content.active {
-            display: block;
-        }
-
-        @keyframes fadein {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            margin-top: 0;
-            margin-bottom: 30px;
-            font-size: 24px;
-            color: var(--text-main);
-            text-transform: lowercase;
-            border-left: 4px solid var(--accent);
-            padding-left: 15px;
-        }
-
-        /* home specific */
-        .hero {
-            background: linear-gradient(45deg, var(--card-bg), #1a1025);
-            padding: 60px 40px;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            border: 1px solid #333;
-        }
-        
-        .hero h1 {
-            margin: 0 0 10px 0;
-            font-size: 36px;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 18px;
-            margin: 0 0 20px 0;
-        }
-
-        .btn {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-hover);
-        }
-        
-        .nav-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            border: 1px solid #222;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        }
-
-        .nav-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            border-color: var(--accent);
-        }
-
-        .nav-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .nav-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin: 0 0 5px 0;
-            text-transform: lowercase;
-        }
-
-        .nav-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* search bars (shared) */
-        .search-container {
-            margin-bottom: 30px;
-        }
-
-        .search-bar {
-            padding: 15px 20px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            width: 100%;
-            max-width: 500px;
-            background-color: var(--card-bg);
-            color: var(--text-main);
-            outline: none;
-            font-family: inherit;
-            font-size: 16px;
-            transition: border-color 0.2s ease;
-        }
-
-        .search-bar:focus {
-            border-color: var(--accent);
-        }
-
-        /* games specific */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        
-        .home-grid {
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        }
-
-        .game-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #222;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            border-color: var(--accent);
-        }
-
-        .game-card:hover .game-thumb {
-            opacity: 0.8;
-        }
-
-        .game-thumb {
-            height: 160px;
-            background-color: #1a1a24;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            transition: opacity 0.2s ease;
-        }
-
-        .game-info {
-            padding: 20px;
-        }
-
-        .game-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 5px 0;
-            text-transform: lowercase;
-        }
-
-        .game-category {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin: 0;
-            text-transform: lowercase;
-        }
-
-        /* proxy specific */
-        .proxy-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            height: 75vh;
-        }
-
-        .proxy-form {
-            display: flex;
-            gap: 15px;
-            width: 100%;
-        }
-        
-        .proxy-form .search-bar {
-            max-width: 100%;
-            flex-grow: 1;
-        }
-
-        .iframe-container {
-            flex-grow: 1;
-            border-radius: 12px;
-            border: 1px solid #222;
-            overflow: hidden;
-            background-color: var(--card-bg);
-        }
-
-        #uv-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background-color: #ffffff; /* white background for actual websites */
-        }
-
-        /* links specific */
-        .links-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 600px;
-        }
-
-        .link-item {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #222;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.2s ease;
-        }
-
-        .link-item:hover {
-            border-color: var(--accent);
-            transform: translateX(5px);
-        }
-
-        .link-title {
-            font-weight: 600;
-            font-size: 18px;
-        }
-        
-        .link-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo" onclick="switchTab('home')">inter<span>nl</span></div>
-        <div class="nav-links">
-            <a class="nav-btn active" onclick="switchTab('home')">home</a>
-            <a class="nav-btn" onclick="switchTab('games')">games</a>
-            <a class="nav-btn" onclick="switchTab('proxy')">proxy</a>
-            <a class="nav-btn" onclick="switchTab('links')">links</a>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <!-- home section -->
-        <div id="home" class="section-content active">
-            <div class="hero">
-                <h1>welcome back.</h1>
-                <p>the fastest, cleanest unblocked hub. no bs, just games.</p>
-                <button class="btn" onclick="switchTab('games')">play now</button>
-            </div>
-            
-            <h2 class="section-title">quick navigation</h2>
-            <div class="grid home-grid">
-                <div class="nav-card" onclick="switchTab('games')">
-                    <div class="nav-icon">🎮</div>
-                    <h3 class="nav-title">game library</h3>
-                    <p class="nav-desc">browse the full collection of unblocked games.</p>
-                </div>
-
-                <div class="nav-card" onclick="switchTab('proxy')">
-                    <div class="nav-icon">🌐</div>
-                    <h3 class="nav-title">web proxy</h3>
-                    <p class="nav-desc">surf the web freely with ultraviolet.</p>
-                </div>
-
-                <div class="nav-card" onclick="switchTab('links')">
-                    <div class="nav-icon">🔗</div>
-                    <h3 class="nav-title">useful links</h3>
-                    <p class="nav-desc">proxies, discord servers, and backup sites.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- games section -->
-        <div id="games" class="section-content">
-            <h2 class="section-title">game library</h2>
-            
-            <div class="search-container">
-                <input type="text" class="search-bar" id="game-search" placeholder="search for a game...">
-            </div>
-
-            <div class="grid" id="gameGrid">
-                <a href="#" class="game-card">
-                    <div class="game-thumb">🏈</div>
-                    <div class="game-info">
-                        <h3 class="game-title">retro bowl</h3>
-                        <p class="game-category">sports</p>
-                    </div>
-                </a>
-                <a href="#" class="game-card">
-                    <div class="game-thumb">🏎️</div>
-                    <div class="game-info">
-                        <h3 class="game-title">madalin stunt cars</h3>
-                        <p class="game-category">driving</p>
-                    </div>
-                </a>
-                <a href="#" class="game-card">
-                    <div class="game-thumb">🟢</div>
-                    <div class="game-info">
-                        <h3 class="game-title">slope</h3>
-                        <p class="game-category">arcade</p>
-                    </div>
-                </a>
-                <a href="#" class="game-card">
-                    <div class="game-thumb">🔫</div>
-                    <div class="game-info">
-                        <h3 class="game-title">1v1.lol</h3>
-                        <p class="game-category">shooter</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- proxy section -->
-        <div id="proxy" class="section-content">
-            <h2 class="section-title">ultraviolet proxy</h2>
-            
-            <div class="proxy-wrapper">
-                <form id="uv-form" class="proxy-form">
-                    <input id="uv-searchbar" class="search-bar" type="text" placeholder="search the web or enter a url (e.g. google.com)" autocomplete="off">
-                    <button type="submit" class="btn">surf</button>
-                </form>
-                
-                <div class="iframe-container">
-                    <!-- this is where the unblocked sites will load -->
-                    <iframe id="uv-frame" src=""></iframe>
-                </div>
-            </div>
-        </div>
-
-        <!-- links section -->
-        <div id="links" class="section-content">
-            <h2 class="section-title">useful links</h2>
-            
-            <div class="links-list">
-                <a href="#" class="link-item">
-                    <div>
-                        <div class="link-title">discord server</div>
-                        <div class="link-desc">join for game requests and updates</div>
-                    </div>
-                    <div>💬</div>
-                </a>
-                
-                <a href="#" class="link-item">
-                    <div>
-                        <div class="link-title">backup domain 1</div>
-                        <div class="link-desc">use this if the main site gets blocked</div>
-                    </div>
-                    <div>🔗</div>
-                </a>
-            </div>
-        </div>
-
+  <body>
+    <div
+      title="Ultraviolet Logo"
+      class="flex-center logo-wrapper header-center"
+    >
+      <img class="logo" src="uv.png" alt="Ultraviolet" />
+      <h1>Ultraviolet | TN</h1>
+    </div>
+    <div class="flex-center desc left-margin">
+      <p>
+        Ultraviolet is highly sophisticated proxy used for evading internet
+        censorship.
+      </p>
     </div>
 
-    <script>
-        // --- tab switching logic ---
-        function switchTab(tabId) {
-            document.querySelectorAll('.section-content').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            document.getElementById(tabId).classList.add('active');
-            
-            const activeNav = document.querySelector(`.nav-btn[onclick="switchTab('${tabId}')"]`);
-            if(activeNav) {
-                activeNav.classList.add('active');
-            }
-            
-            window.scrollTo(0, 0);
-        }
-
-        // --- games search logic ---
-        const gameSearch = document.getElementById('game-search');
-        const gameCards = document.querySelectorAll('#gameGrid .game-card');
-
-        gameSearch.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            gameCards.forEach(card => {
-                const title = card.querySelector('.game-title').textContent.toLowerCase();
-                const category = card.querySelector('.game-category').textContent.toLowerCase();
-                
-                if(title.includes(searchTerm) || category.includes(searchTerm)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // --- ultraviolet proxy logic ---
-        const uvForm = document.getElementById('uv-form');
-        const uvInput = document.getElementById('uv-searchbar');
-        const uvFrame = document.getElementById('uv-frame');
-
-        // search engine format (defaults to google)
-        const searchEngine = 'https://www.google.com/search?q=%s'; 
-
-        uvForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            let url = uvInput.value.trim();
-            if (!url) return;
-
-            // if they just type a word, search it on google, otherwise treat as url
-            if (!url.includes('.') || url.includes(' ')) {
-                url = searchEngine.replace('%s', encodeURIComponent(url));
-            } else if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                url = 'https://' + url;
-            }
-
-            // make sure ultraviolet config is loaded
-            if (typeof __uv$config === 'undefined') {
-                alert("uv config not found! make sure uv.bundle.js and uv.config.js are actually on your server.");
-                return;
-            }
-
-            // this encodes the url using standard uv logic and sets the iframe
-            uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
-        });
-    </script>
-
-</body>
+    <form id="uv-form" class="flex-center">
+      <input
+        id="uv-search-engine"
+        value="https://www.google.com/search?q=%s"
+        type="hidden"
+      />
+      <input id="uv-address" type="text" placeholder="Search the web freely" />
+    </form>
+    <div class="desc left-margin">
+      <p id="uv-error"></p>
+      <pre id="uv-error-code"></pre>
+    </div>
+    <footer>
+      <div>
+        <a
+          title="The TitaniumNetwork GitHub organization"
+          href="https://github.com/titaniumnetwork-dev"
+          >TitaniumNetwork</a
+        >
+        <a title="The TitaniumNetwork Discord" href="https://discord.gg/unblock"
+          >Discord</a
+        >
+        <a
+          title="The TompHTTP GitHub organization"
+          href="https://github.com/tomphttp"
+          >TompHTTP</a
+        >
+        <a
+          title="The official deployment repository for Ultraviolet"
+          href="https://github.com/titaniumnetwork-dev/Ultraviolet-App"
+          >GitHub</a
+        >
+        <a title="License information" href="credits.html">Credits</a>
+      </div>
+      <div>
+        <span>Ultraviolet &copy; TN 2023</span>
+      </div>
+    </footer>
+    <iframe style="display: none;" id="uv-frame"></iframe>
+  </body>
 </html>
