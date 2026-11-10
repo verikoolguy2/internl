@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>internl | unblocked</title>
     
-    <!-- ultraviolet required scripts -->
-    <script src="/uv/uv.bundle.js"></script>
-    <script src="/uv/uv.config.js"></script>
+    <!-- ultraviolet required scripts with relative paths -->
+    <script src="./uv/uv.bundle.js"></script>
+    <script src="./uv/uv.config.js"></script>
 
     <style>
         :root {
@@ -522,9 +522,9 @@
             uvFrame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
         });
 
-        // register the ultraviolet service worker
+        // register the ultraviolet service worker using relative path
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/uv/uv.sw.js', {
+            navigator.serviceWorker.register('./uv/uv.sw.js', {
                 scope: __uv$config.prefix
             }).then(() => {
                 console.log('uv service worker registered successfully');
