@@ -1,10 +1,12 @@
 importScripts('/internl/uv/uv.bundle.js');
 importScripts('/internl/uv/uv.config.js');
 
-const sw = new UVServiceWorker();
+const uv = new UVServiceWorker();
 
-self.addEventListener('fetch', (event) => {
-    event.respondWith(sw.fetch(event));
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        uv.fetch(event)
+    );
 });
 
 self.addEventListener('install', (event) => {
