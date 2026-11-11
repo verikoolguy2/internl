@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>internl | unblocked</title>
     
-    <!-- ultraviolet required scripts with relative paths -->
+    <!-- ultraviolet required scripts with relative paths for github pages -->
     <script src="./uv/uv.bundle.js"></script>
     <script src="./uv/uv.config.js"></script>
 
@@ -497,7 +497,7 @@
             });
         });
 
-        // ultraviolet proxy 
+        // ultraviolet proxy logic
         const uvForm = document.getElementById('uv-form');
         const uvInput = document.getElementById('uv-searchbar');
         const uvFrame = document.getElementById('uv-frame');
@@ -515,7 +515,7 @@
             }
 
             if (typeof __uv$config === 'undefined') {
-                alert("uv config not found! make sure uv.bundle.js and uv.config.js are loaded.");
+                alert("uv config not found! make sure your uv javascript files are pushed and loaded.");
                 return;
             }
 
