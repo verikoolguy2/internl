@@ -21,6 +21,9 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* navbar */
@@ -71,6 +74,9 @@
             padding: 40px;
             max-width: 1400px;
             margin: 0 auto;
+            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .section-content {
@@ -292,6 +298,18 @@
             font-size: 14px;
         }
 
+        /* footer version */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid #15151a;
+            background-color: var(--bg-color);
+            text-transform: lowercase;
+            letter-spacing: 1px;
+        }
+
     </style>
 </head>
 <body>
@@ -374,6 +392,10 @@
         </div>
 
     </div>
+
+    <footer>
+        v1.0.0
+    </footer>
 
     <script>
         // tab switching
